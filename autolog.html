@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Auto Login</title>
+</head>
+<body>
+  <h2>Auto Login Page</h2>
+  <p>If the login form is detected, it will autofill and log in automatically.</p>
+
+  <script>
+    // When the page loads
+    window.onload = function() {
+      // Go to the login page
+      window.location.href = "https://175.100.47.12";
+    };
+
+    // After the page loads, inject the login logic
+    document.addEventListener("DOMContentLoaded", function() {
+      const USERNAME = "4";
+      const PASSWORD = "4";
+
+      // Try to find username and password fields
+      const userField = document.querySelector("input[type='Username'], input[name*='Username'], input[id*='Username']");
+      const passField = document.querySelector("input[type='Password'], input[name*='Password'], input[id*='Password']");
+      const loginBtn  = document.querySelector("input[type='Login'], button[type='Login'], input[type='Login']");
+
+      if (userField && passField) {
+        userField.value = USERNAME;
+        passField.value = PASSWORD;
+
+        // Click the login button if found
+        if (loginBtn) {
+          loginBtn.click();
+        } else {
+          // fallback: submit the form
+          const form = userField.closest("form");
+          if (form) form.submit();
+        }
+      }
+    });
+  </script>
+</body>
+</html>
